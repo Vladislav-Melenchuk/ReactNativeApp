@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { ReactNode, useRef } from 'react';
 import {
   Animated,
   Pressable,
@@ -11,6 +11,7 @@ import {
 import { animatedButtonStyles } from './AnimatedButton.styles';
 
 type AnimatedButtonProps = {
+  children?: ReactNode;
   disabled?: boolean;
   label: string;
   onPress: () => void;
@@ -19,6 +20,7 @@ type AnimatedButtonProps = {
 };
 
 export function AnimatedButton({
+  children,
   disabled,
   label,
   onPress,
@@ -46,7 +48,7 @@ export function AnimatedButton({
         onPressOut={() => animateTo(1)}
         style={animatedButtonStyles.pressable}
       >
-        <Text style={textStyle}>{label}</Text>
+        {children ?? <Text style={textStyle}>{label}</Text>}
       </Pressable>
     </Animated.View>
   );

@@ -1,32 +1,59 @@
 import React from 'react';
-import { Text, useWindowDimensions, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 
+import { TabKey } from '../../types/app';
 import { homeScreenStyles } from './HomeScreen.styles';
 
-export function HomeScreen() {
-  const { width, height } = useWindowDimensions();
-  const isLandscape = width > height;
+const QUICK_ACTIONS: { color: string; key: TabKey; subtitle: string; title: string }[] = [
+  { key: 'gestures', title: 'Жести', subtitle: 'Діагоналі та 4 напрями', color: '#20C997' },
+  { key: 'animation', title: 'Анімації', subtitle: 'Живі демонстрації', color: '#8B6DFF' },
+  { key: 'finance', title: 'Валюти', subtitle: 'Курси на дату', color: '#F4B740' },
+  { key: 'account', title: 'Профіль', subtitle: 'Редагування і валідація', color: '#4C8EFF' },
+];
 
+export function HomeScreen({ onSelectTab }: { onSelectTab: (tab: TabKey) => void }) {
   return (
-    <View
-      style={[
-        homeScreenStyles.wrapper,
-        isLandscape ? homeScreenStyles.wrapperLandscape : null,
-      ]}
+    <ScrollView
+      contentContainerStyle={homeScreenStyles.content}
+      style={homeScreenStyles.scroll}
     >
-      <View style={[homeScreenStyles.glow, homeScreenStyles.glowTop]} />
-      <View style={[homeScreenStyles.glow, homeScreenStyles.glowBottom]} />
-      <View
-        style={[
-          homeScreenStyles.card,
-          isLandscape ? homeScreenStyles.cardLandscape : null,
-        ]}
-      >
-        <Text style={homeScreenStyles.title}>Ласкаво просимо</Text>
-        <Text style={homeScreenStyles.text}>
-          Ваш простий і зручний калькулятор.
+      <View style={homeScreenStyles.hero}>
+        <Text style={homeScreenStyles.eyebrow}>Nova Workspace</Text>
+        <Text style={homeScreenStyles.title}>Добрий день, Владислав</Text>
+        <Text style={homeScreenStyles.description}>Усе важливе зібране поруч.</Text>
+      </View>
+
+      <Text style={homeScreenStyles.sectionTitle}>Швидкий доступ</Text>
+      <View style={homeScreenStyles.actionGrid}>
+        {QUICK_ACTIONS.map(action => (
+          <Pressable
+            key={action.key}
+            onPress={() => onSelectTab(action.key)}
+            style={homeScreenStyles.actionCard}
+          >
+            <View
+              style={[
+                homeScreenStyles.actionAccent,
+                { backgroundColor: action.color },
+              ]}
+            />
+            <View style={homeScreenStyles.actionBody}>
+              <View>
+                <Text style={homeScreenStyles.actionTitle}>{action.title}</Text>
+                <Text style={homeScreenStyles.actionText}>{action.subtitle}</Text>
+              </View>
+              <Text style={homeScreenStyles.actionArrow}>→</Text>
+            </View>
+          </Pressable>
+        ))}
+      </View>
+
+      <View style={homeScreenStyles.focusCard}>
+        <Text style={homeScreenStyles.focusLabel}>Фокус дня</Text>
+        <Text style={homeScreenStyles.focusTitle}>
+          Оновити профіль та переглянути анімації
         </Text>
       </View>
-    </View>
+    </ScrollView>
   );
 }

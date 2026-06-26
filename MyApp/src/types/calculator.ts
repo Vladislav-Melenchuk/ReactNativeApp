@@ -1,4 +1,3 @@
-export type TabKey = 'home' | 'calculator';
 export type Operator = '+' | '-' | '×' | '÷';
 export type MemoryLabel = 'MC' | 'MR' | 'M+' | 'M−' | 'MS';
 export type SecondaryAction = 'clear' | 'toggle-sign' | 'percent' | 'backspace';

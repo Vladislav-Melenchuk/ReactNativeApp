@@ -4,39 +4,56 @@ import { colors } from '../../theme/colors';
 
 export const navigationBarStyles = StyleSheet.create({
   shell: {
+    position: 'absolute',
+    left: 16,
+    right: 16,
+    bottom: 10,
+    alignItems: 'center',
+  },
+  content: {
+    width: '100%',
+    maxWidth: 420,
     flexDirection: 'row',
-    gap: 12,
-    padding: 10,
-    borderRadius: 26,
+    padding: 8,
+    borderRadius: 28,
     backgroundColor: colors.navBackground,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.08)',
+    borderColor: colors.cardBorder,
+    shadowColor: '#000',
+    shadowOpacity: 0.18,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 10,
   },
   tabButton: {
     flex: 1,
-    minHeight: 56,
-    borderRadius: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.tabIdle,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.08)',
+    minHeight: 64,
+    borderRadius: 20,
   },
   tabButtonActive: {
-    backgroundColor: colors.tabActive,
-    borderColor: 'rgba(194,207,255,0.42)',
-    shadowColor: '#8FA8FF',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.28,
-    shadowRadius: 16,
-    elevation: 5,
+    backgroundColor: 'rgba(45,104,255,0.18)',
   },
-  tabText: {
+  tabInner: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 18,
+  },
+  icon: {
     color: colors.textMuted,
-    fontSize: 16,
-    fontWeight: '700',
+    fontSize: 18,
+    marginBottom: 4,
   },
-  tabTextActive: {
+  iconActive: {
+    color: colors.textPrimary,
+  },
+  label: {
+    color: colors.textMuted,
+    fontSize: 11,
+    fontWeight: '700',
+    textAlign: 'center',
+  },
+  labelActive: {
     color: colors.textPrimary,
   },
 });

@@ -8,6 +8,7 @@ import {
 import { AppShell } from './navigation/AppShell';
 import { appStyles } from './styles/appStyles';
 import { colors } from './theme/colors';
+import './utils/date';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';

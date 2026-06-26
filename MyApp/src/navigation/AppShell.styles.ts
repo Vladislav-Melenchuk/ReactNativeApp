@@ -9,9 +9,9 @@ export const appShellStyles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingHorizontal: 18,
-    paddingTop: 12,
-    paddingBottom: 16,
+    paddingHorizontal: 16,
+    paddingTop: 10,
+    paddingBottom: 98,
   },
   page: {
     flex: 1,
